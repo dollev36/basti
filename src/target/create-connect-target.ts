@@ -1,6 +1,7 @@
 import { CustomConnectTarget } from './custom/custom-connect-target.js';
 import { DbClusterConnectTarget } from './db-cluster/db-cluster-connect-target.js';
 import { DbInstanceConnectTarget } from './db-instance/db-instance-connect-target.js';
+import { ElasticacheClusterClusterConnectTarget } from './elasticache-cluster/elasticache-cluster-connect-target.js';
 
 import type { ConnectTarget } from './connect-target.js';
 import type { ConnectTargetInput } from './target-input.js';
@@ -12,5 +13,9 @@ export function createConnectTarget(target: ConnectTargetInput): ConnectTarget {
   if ('dbCluster' in target) {
     return new DbClusterConnectTarget(target);
   }
+  if ('elasticacheCluster' in target) {
+    return new ElasticacheClusterClusterConnectTarget(target);
+  }
+
   return new CustomConnectTarget(target);
 }
